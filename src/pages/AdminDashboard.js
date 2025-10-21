@@ -627,24 +627,6 @@ const AdminDashboard = () => {
                 )}
               </div>
 
-              {/* Preview Section */}
-              {importData && (
-                <div className="mb-3">
-                  <h5>Xem trước dữ liệu:</h5>
-                  <div style={{ 
-                    background: '#f8f9fa', 
-                    padding: '10px', 
-                    borderRadius: '5px',
-                    maxHeight: '150px',
-                    overflowY: 'auto'
-                  }}>
-                    <pre style={{ margin: 0, fontSize: '12px' }}>
-                      {JSON.stringify(JSON.parse(importData || '[]'), null, 2).substring(0, 500)}
-                      {importData.length > 500 && '...'}
-                    </pre>
-                  </div>
-                </div>
-              )}
 
               <div className="d-flex gap-2">
                 <button 
