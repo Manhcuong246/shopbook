@@ -9,6 +9,7 @@ const AdminDashboard = () => {
   const [editingBook, setEditingBook] = useState(null);
   const [showImportModal, setShowImportModal] = useState(false);
   const [importData, setImportData] = useState('');
+  const [importMethod, setImportMethod] = useState('paste'); // 'paste' or 'file'
 
   const [bookForm, setBookForm] = useState({
     title: '',
@@ -77,12 +78,32 @@ const AdminDashboard = () => {
         importBooksFromExcel(booksData);
         setShowImportModal(false);
         setImportData('');
+        setImportMethod('paste');
         alert('Nhập sách thành công!');
       } else {
         alert('Dữ liệu không hợp lệ!');
       }
     } catch (error) {
       alert('Lỗi định dạng JSON!');
+    }
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const content = e.target.result;
+          setImportData(content);
+          // Validate JSON format
+          JSON.parse(content);
+        } catch (error) {
+          alert('File không phải định dạng JSON hợp lệ!');
+          setImportData('');
+        }
+      };
+      reader.readAsText(file);
     }
   };
 
@@ -448,10 +469,58 @@ const AdminDashboard = () => {
             justifyContent: 'center',
             zIndex: 1000
           }}>
-            <div className="card" style={{ width: '600px', maxHeight: '80vh' }}>
-              <h3 className="mb-3">Nhập sách từ JSON</h3>
-              <p>Nhập dữ liệu sách theo định dạng JSON:</p>
+            <div className="card" style={{ width: '700px', maxHeight: '80vh' }}>
+              <h3 className="mb-3">
+                <i className="fas fa-file-import"></i> Nhập sách từ JSON/Excel
+              </h3>
               
+              {/* Import Method Selection */}
+              <div className="mb-3">
+                <label className="mb-2"><strong>Chọn phương thức nhập:</strong></label>
+                <div className="d-flex gap-3">
+                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                    <input
+                      type="radio"
+                      name="importMethod"
+                      value="paste"
+                      checked={importMethod === 'paste'}
+                      onChange={(e) => setImportMethod(e.target.value)}
+                      style={{ marginRight: '8px' }}
+                    />
+                    <i className="fas fa-paste"></i> Dán JSON trực tiếp
+                  </label>
+                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                    <input
+                      type="radio"
+                      name="importMethod"
+                      value="file"
+                      checked={importMethod === 'file'}
+                      onChange={(e) => setImportMethod(e.target.value)}
+                      style={{ marginRight: '8px' }}
+                    />
+                    <i className="fas fa-file"></i> Chọn file JSON
+                  </label>
+                </div>
+              </div>
+
+              {/* File Upload Section */}
+              {importMethod === 'file' && (
+                <div className="form-group mb-3">
+                  <label>Chọn file JSON:</label>
+                  <input
+                    type="file"
+                    accept=".json"
+                    onChange={handleFileUpload}
+                    className="form-control"
+                    style={{ padding: '8px' }}
+                  />
+                  <small className="text-muted">
+                    <i className="fas fa-info-circle"></i> Chỉ chấp nhận file .json
+                  </small>
+                </div>
+              )}
+
+              {/* JSON Data Input */}
               <div className="form-group">
                 <label>Dữ liệu JSON:</label>
                 <textarea
@@ -471,15 +540,48 @@ const AdminDashboard = () => {
     "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop&crop=center"
   }
 ]'
+                  disabled={importMethod === 'file' && !importData}
                 />
+                {importMethod === 'paste' && (
+                  <small className="text-muted">
+                    <i className="fas fa-lightbulb"></i> Tip: Bạn có thể copy từ file sample-books.json
+                  </small>
+                )}
               </div>
 
+              {/* Preview Section */}
+              {importData && (
+                <div className="mb-3">
+                  <h5>Xem trước dữ liệu:</h5>
+                  <div style={{ 
+                    background: '#f8f9fa', 
+                    padding: '10px', 
+                    borderRadius: '5px',
+                    maxHeight: '150px',
+                    overflowY: 'auto'
+                  }}>
+                    <pre style={{ margin: 0, fontSize: '12px' }}>
+                      {JSON.stringify(JSON.parse(importData || '[]'), null, 2).substring(0, 500)}
+                      {importData.length > 500 && '...'}
+                    </pre>
+                  </div>
+                </div>
+              )}
+
               <div className="d-flex gap-2">
-                <button onClick={handleImportBooks} className="btn btn-success">
+                <button 
+                  onClick={handleImportBooks} 
+                  className="btn btn-success"
+                  disabled={!importData}
+                >
                   <i className="fas fa-upload"></i> Nhập dữ liệu
                 </button>
                 <button
-                  onClick={() => setShowImportModal(false)}
+                  onClick={() => {
+                    setShowImportModal(false);
+                    setImportData('');
+                    setImportMethod('paste');
+                  }}
                   className="btn btn-secondary"
                 >
                   <i className="fas fa-times"></i> Hủy
