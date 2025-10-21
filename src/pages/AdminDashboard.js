@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   const [editingBook, setEditingBook] = useState(null);
   const [showImportModal, setShowImportModal] = useState(false);
   const [importData, setImportData] = useState('');
-  const [importMethod, setImportMethod] = useState('paste'); // 'paste' or 'file'
+  const [importMethod, setImportMethod] = useState('paste'); // 'paste', 'file', 'excel'
 
   const [bookForm, setBookForm] = useState({
     title: '',
@@ -95,16 +95,56 @@ const AdminDashboard = () => {
       reader.onload = (e) => {
         try {
           const content = e.target.result;
-          setImportData(content);
-          // Validate JSON format
-          JSON.parse(content);
+          
+          if (importMethod === 'file') {
+            // JSON file
+            setImportData(content);
+            JSON.parse(content); // Validate JSON
+          } else if (importMethod === 'excel') {
+            // CSV/Excel file
+            const csvData = parseCSV(content);
+            const jsonData = convertCSVToJSON(csvData);
+            setImportData(JSON.stringify(jsonData, null, 2));
+          }
         } catch (error) {
-          alert('File không phải định dạng JSON hợp lệ!');
+          alert(`File không phải định dạng ${importMethod === 'file' ? 'JSON' : 'CSV'} hợp lệ!`);
           setImportData('');
         }
       };
       reader.readAsText(file);
     }
+  };
+
+  const parseCSV = (csvText) => {
+    const lines = csvText.split('\n');
+    const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
+    const data = [];
+    
+    for (let i = 1; i < lines.length; i++) {
+      if (lines[i].trim()) {
+        const values = lines[i].split(',').map(v => v.trim().replace(/"/g, ''));
+        const row = {};
+        headers.forEach((header, index) => {
+          row[header] = values[index] || '';
+        });
+        data.push(row);
+      }
+    }
+    
+    return data;
+  };
+
+  const convertCSVToJSON = (csvData) => {
+    return csvData.map(row => ({
+      title: row.title || row.TenSach || '',
+      author: row.author || row.TacGia || '',
+      price: parseInt(row.price || row.Gia || 0),
+      description: row.description || row.MoTa || '',
+      category: row.category || row.DanhMuc || '',
+      stock: parseInt(row.stock || row.TonKho || 0),
+      discount: parseInt(row.discount || row.GiamGia || 0),
+      image: row.image || row.HinhAnh || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop&crop=center'
+    }));
   };
 
   const categories = [...new Set(books.map(book => book.category))];
@@ -477,8 +517,8 @@ const AdminDashboard = () => {
               {/* Import Method Selection */}
               <div className="mb-3">
                 <label className="mb-2"><strong>Chọn phương thức nhập:</strong></label>
-                <div className="d-flex gap-3">
-                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                <div className="grid grid-3">
+                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', padding: '10px', border: '1px solid #ddd', borderRadius: '5px' }}>
                     <input
                       type="radio"
                       name="importMethod"
@@ -487,9 +527,13 @@ const AdminDashboard = () => {
                       onChange={(e) => setImportMethod(e.target.value)}
                       style={{ marginRight: '8px' }}
                     />
-                    <i className="fas fa-paste"></i> Dán JSON trực tiếp
+                    <div>
+                      <i className="fas fa-paste" style={{ fontSize: '1.2rem', color: '#007bff' }}></i>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>Dán JSON</div>
+                      <div style={{ fontSize: '0.8rem', color: '#666' }}>Copy/paste trực tiếp</div>
+                    </div>
                   </label>
-                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', padding: '10px', border: '1px solid #ddd', borderRadius: '5px' }}>
                     <input
                       type="radio"
                       name="importMethod"
@@ -498,25 +542,59 @@ const AdminDashboard = () => {
                       onChange={(e) => setImportMethod(e.target.value)}
                       style={{ marginRight: '8px' }}
                     />
-                    <i className="fas fa-file"></i> Chọn file JSON
+                    <div>
+                      <i className="fas fa-file-code" style={{ fontSize: '1.2rem', color: '#28a745' }}></i>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>File JSON</div>
+                      <div style={{ fontSize: '0.8rem', color: '#666' }}>Upload file .json</div>
+                    </div>
+                  </label>
+                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', padding: '10px', border: '1px solid #ddd', borderRadius: '5px' }}>
+                    <input
+                      type="radio"
+                      name="importMethod"
+                      value="excel"
+                      checked={importMethod === 'excel'}
+                      onChange={(e) => setImportMethod(e.target.value)}
+                      style={{ marginRight: '8px' }}
+                    />
+                    <div>
+                      <i className="fas fa-file-excel" style={{ fontSize: '1.2rem', color: '#ffc107' }}></i>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>Excel/CSV</div>
+                      <div style={{ fontSize: '0.8rem', color: '#666' }}>Upload file .csv</div>
+                    </div>
                   </label>
                 </div>
               </div>
 
               {/* File Upload Section */}
-              {importMethod === 'file' && (
+              {(importMethod === 'file' || importMethod === 'excel') && (
                 <div className="form-group mb-3">
-                  <label>Chọn file JSON:</label>
+                  <label>
+                    Chọn file {importMethod === 'file' ? 'JSON' : 'CSV/Excel'}:
+                  </label>
                   <input
                     type="file"
-                    accept=".json"
+                    accept={importMethod === 'file' ? '.json' : '.csv,.xlsx,.xls'}
                     onChange={handleFileUpload}
                     className="form-control"
                     style={{ padding: '8px' }}
                   />
                   <small className="text-muted">
-                    <i className="fas fa-info-circle"></i> Chỉ chấp nhận file .json
+                    <i className="fas fa-info-circle"></i> 
+                    {importMethod === 'file' 
+                      ? ' Chỉ chấp nhận file .json' 
+                      : ' Chấp nhận file .csv, .xlsx, .xls'
+                    }
                   </small>
+                  {importMethod === 'excel' && (
+                    <div style={{ marginTop: '10px', padding: '10px', background: '#f8f9fa', borderRadius: '5px' }}>
+                      <strong>📋 Định dạng CSV mẫu:</strong>
+                      <pre style={{ fontSize: '12px', margin: '5px 0' }}>
+{`title,author,price,description,category,stock,discount,image
+"Tên sách","Tác giả",150000,"Mô tả sách","Danh mục",50,10,"URL hình ảnh"`}
+                      </pre>
+                    </div>
+                  )}
                 </div>
               )}
 

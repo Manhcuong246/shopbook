@@ -1,7 +1,7 @@
-# 📚 Hướng dẫn nhập sách từ file JSON
+# 📚 Hướng dẫn nhập sách từ file JSON/Excel
 
 ## 🎯 Mục đích
-File JSON này được tạo để demo chức năng nhập sách hàng loạt vào hệ thống ShopBook.
+Files mẫu này được tạo để demo chức năng nhập sách hàng loạt vào hệ thống ShopBook.
 
 ## 📋 Cách sử dụng
 
@@ -13,26 +13,27 @@ File JSON này được tạo để demo chức năng nhập sách hàng loạt 
 - Vào menu "Admin" trên header
 - Chọn tab "Quản lý sách"
 
-### 3. **Nhập file JSON**
+### 3. **Nhập dữ liệu sách**
 - Nhấn nút "Nhập từ Excel/JSON"
-- Copy nội dung từ file JSON mẫu
-- Paste vào textarea
+- Chọn phương thức nhập:
+  - **Dán JSON:** Copy/paste từ file JSON
+  - **File JSON:** Upload file .json
+  - **Excel/CSV:** Upload file .csv/.xlsx
 - Nhấn "Nhập dữ liệu"
 
-## 📁 Files JSON mẫu
+## 📁 Files mẫu
 
-### `sample-books.json` - 10 cuốn sách đa dạng
-- Sách công nghệ, tâm lý học, kinh doanh
-- Giá từ 125,000đ - 180,000đ
-- Giảm giá từ 5% - 25%
+### JSON Files:
+- **`sample-books.json`** - 10 cuốn sách đa dạng
+- **`sample-books-2.json`** - 5 cuốn sách bổ sung
 
-### `sample-books-2.json` - 5 cuốn sách bổ sung
-- Sách lãnh đạo, tư duy, kỹ năng mềm
-- Giá từ 95,000đ - 170,000đ
-- Giảm giá từ 0% - 18%
+### CSV Files:
+- **`sample-books.csv`** - 8 cuốn sách định dạng CSV
+- Hỗ trợ upload trực tiếp từ Excel
 
-## 🔧 Cấu trúc JSON
+## 🔧 Cấu trúc dữ liệu
 
+### JSON Format:
 ```json
 [
   {
@@ -46,6 +47,12 @@ File JSON này được tạo để demo chức năng nhập sách hàng loạt 
     "image": "URL hình ảnh"
   }
 ]
+```
+
+### CSV Format:
+```csv
+title,author,price,description,category,stock,discount,image
+"Tên sách","Tác giả",150000,"Mô tả sách","Danh mục",30,15,"URL hình ảnh"
 ```
 
 ### 📝 **Các trường bắt buộc:**

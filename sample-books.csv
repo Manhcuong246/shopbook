@@ -1,0 +1,9 @@
+title,author,price,description,category,stock,discount,image
+"Lập Trình Python Cơ Bản","John Smith",120000,"Hướng dẫn lập trình Python từ cơ bản đến nâng cao","Công nghệ",45,15,"https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=400&fit=crop&crop=center"
+"Kỹ Năng Lãnh Đạo","Jane Doe",135000,"Phát triển kỹ năng lãnh đạo và quản lý đội ngũ","Lãnh đạo",30,10,"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=center"
+"Tư Duy Sáng Tạo","Bob Johnson",110000,"Khám phá và phát triển tư duy sáng tạo trong công việc","Tư duy",25,20,"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop&crop=center"
+"Quản Lý Thời Gian","Alice Brown",95000,"Phương pháp quản lý thời gian hiệu quả","Năng suất",40,5,"https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=300&h=400&fit=crop&crop=center"
+"Marketing Digital","Charlie Wilson",160000,"Chiến lược marketing trong thời đại số","Marketing",35,12,"https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&h=400&fit=crop&crop=center"
+"Tài Chính Cá Nhân","David Lee",125000,"Quản lý tài chính cá nhân và đầu tư thông minh","Tài chính",28,8,"https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop&crop=center"
+"Giao Tiếp Hiệu Quả","Emma Davis",105000,"Nghệ thuật giao tiếp trong công việc và cuộc sống","Kỹ năng mềm",50,0,"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=center"
+"Thiết Kế UX/UI","Frank Miller",180000,"Nguyên tắc thiết kế giao diện người dùng","Thiết kế",22,18,"https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop&crop=center"
