@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Tư Duy Như Một Kỹ Sư Phần Mềm",
+    "author": "John Sonmez",
+    "price": 145000,
+    "description": "Hướng dẫn phát triển tư duy logic và kỹ năng giải quyết vấn đề trong lập trình.",
+    "category": "Công nghệ",
+    "stock": 25,
+    "discount": 15,
+    "image": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "price": 180000,
+    "description": "Nghệ thuật viết code sạch và dễ bảo trì cho lập trình viên.",
+    "category": "Công nghệ",
+    "stock": 18,
+    "discount": 20,
+    "image": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Tâm Lý Học Thành Công",
+    "author": "Carol S. Dweck",
+    "price": 125000,
+    "description": "Khám phá tư duy phát triển và cách vượt qua thất bại để đạt thành công.",
+    "category": "Tâm lý học",
+    "stock": 32,
+    "discount": 10,
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Sức Mạnh Của Thói Quen",
+    "author": "Charles Duhigg",
+    "price": 135000,
+    "description": "Khám phá cách thói quen ảnh hưởng đến cuộc sống và cách thay đổi chúng.",
+    "category": "Phát triển bản thân",
+    "stock": 28,
+    "discount": 12,
+    "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Từ Tốt Đến Vĩ Đại",
+    "author": "Jim Collins",
+    "price": 165000,
+    "description": "Nghiên cứu về các công ty vượt từ mức tốt lên mức vĩ đại.",
+    "category": "Kinh doanh",
+    "stock": 22,
+    "discount": 18,
+    "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Nghệ Thuật Thuyết Trình",
+    "author": "Nancy Duarte",
+    "price": 155000,
+    "description": "Hướng dẫn tạo ra những bài thuyết trình ấn tượng và hiệu quả.",
+    "category": "Kỹ năng mềm",
+    "stock": 20,
+    "discount": 8,
+    "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Tư Duy Nhanh Và Chậm",
+    "author": "Daniel Kahneman",
+    "price": 175000,
+    "description": "Khám phá hai hệ thống tư duy của con người và cách chúng ảnh hưởng đến quyết định.",
+    "category": "Tâm lý học",
+    "stock": 15,
+    "discount": 25,
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Startup Nation",
+    "author": "Dan Senor",
+    "price": 140000,
+    "description": "Câu chuyện về sự phát triển thần kỳ của Israel trong lĩnh vực công nghệ.",
+    "category": "Kinh doanh",
+    "stock": 30,
+    "discount": 5,
+    "image": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Nghệ Thuật Đàm Phán",
+    "author": "Chris Voss",
+    "price": 160000,
+    "description": "Kỹ thuật đàm phán từ cựu đặc vụ FBI và cách áp dụng trong kinh doanh.",
+    "category": "Kỹ năng mềm",
+    "stock": 25,
+    "discount": 15,
+    "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "price": 130000,
+    "description": "Nghệ thuật tập trung sâu trong thời đại số và cách tăng năng suất làm việc.",
+    "category": "Năng suất",
+    "stock": 35,
+    "discount": 10,
+    "image": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=300&h=400&fit=crop&crop=center"
+  }
+]

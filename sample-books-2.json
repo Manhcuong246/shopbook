@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Lập Trình Viên Tự Do",
+    "author": "Mikael Krogerus",
+    "price": 120000,
+    "description": "Hướng dẫn trở thành lập trình viên tự do và xây dựng sự nghiệp thành công.",
+    "category": "Công nghệ",
+    "stock": 40,
+    "discount": 0,
+    "image": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Nghệ Thuật Lãnh Đạo",
+    "author": "Simon Sinek",
+    "price": 150000,
+    "description": "Khám phá bí quyết lãnh đạo hiệu quả và truyền cảm hứng cho đội ngũ.",
+    "category": "Lãnh đạo",
+    "stock": 28,
+    "discount": 12,
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Tư Duy Hệ Thống",
+    "author": "Donella Meadows",
+    "price": 170000,
+    "description": "Cách tư duy hệ thống giúp giải quyết các vấn đề phức tạp trong cuộc sống và công việc.",
+    "category": "Tư duy",
+    "stock": 20,
+    "discount": 18,
+    "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Nghệ Thuật Giao Tiếp",
+    "author": "Dale Carnegie",
+    "price": 95000,
+    "description": "Kỹ năng giao tiếp hiệu quả trong mọi tình huống cuộc sống và công việc.",
+    "category": "Kỹ năng mềm",
+    "stock": 50,
+    "discount": 5,
+    "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=300&h=400&fit=crop&crop=center"
+  },
+  {
+    "title": "Tư Duy Phản Biện",
+    "author": "Richard Paul",
+    "price": 110000,
+    "description": "Phát triển kỹ năng tư duy phản biện để đưa ra quyết định sáng suốt.",
+    "category": "Tư duy",
+    "stock": 33,
+    "discount": 8,
+    "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&h=400&fit=crop&crop=center"
+  }
+]
